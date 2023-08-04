@@ -30,3 +30,43 @@ class Solution:
                     col[j].add(board[i][j])
 
         return True
+
+# 49. Group Anagrams
+# O(N) Time and Space #learning of construction of keys
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+
+        # create dictionary and key is the letters
+        #use defaultdict(list)
+        res=defaultdict(list)
+        for e in strs:
+            dic=[0]*26
+            for s in e:
+                loc = ord(s)-ord('a')
+                dic[loc]+=1
+            res[tuple(dic)].append(e)
+        return res.values()
+# method 2 simpler way to create key O(NKlog(K) Time
+        res=defaultdict(list)
+        for s in strs:
+            key=sorted(s)
+            res[tuple(key)].append(s)
+        return res.values()
+
+# 238. Product of Array Except Self
+        #two lists, left2right and right2left and multiply together My solution
+        # O(3N) time and O(3N)Space
+        left2right=[1]*len(nums)
+        for i in range(1, len(nums)):
+            left2right[i]=left2right[i-1]*nums[i-1]
+
+        right2left=[1]*len(nums)
+        for i in range(len(nums)-2,-1,-1):
+            right2left[i]=right2left[i+1]*nums[i+1]
+
+        # find product
+        res=[1]*len(nums)
+        for i in range(len(nums)):
+            res[i]=left2right[i]*right2left[i]
+
+        return res
