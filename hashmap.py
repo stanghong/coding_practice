@@ -70,3 +70,42 @@ class Solution:
             res[i]=left2right[i]*right2left[i]
 
         return res
+
+# 347. Top K Frequent Elements
+    # method1 NlogN time compexity and log N space complexity
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        #create dictionary of counter, sort by counters
+        #select highest freq elements
+
+        countmap=dict(collections.Counter(nums))
+
+        #sort by values
+        sorteddict = dict(sorted(countmap.items(), key =lambda x: -x[1]) )
+        print(sorteddict)
+        #create list based on first k results
+        res=[]
+        i=0
+        for key,v in sorteddict.items():
+            if i<k:
+                res.append(key)
+            i+=1
+        return res
+    #method 2: dictionary using frequency as key
+        
+         #initialize the dictionary
+        countdic=dict(collections.Counter(nums))
+        dic=defaultdict(list)
+       
+
+        for key, freq in countdic.items():
+            dic[freq].append(key)
+        print(dic)
+        
+        res=[]
+        for i in range(len(nums),-1, -1): # reverse freq so high not empty freq shows first
+            if dic[i]: 
+                res.extend(dic[i]) # use extend to handle nested list
+        print(res)
+        return res[:k]
+
+
