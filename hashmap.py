@@ -109,3 +109,38 @@ class Solution:
         return res[:k]
 
 
+class Codec:
+    def encode(self, strs: List[str]) -> str:
+        """Encodes a list of strings to a single string.
+        """
+        #encode string,seperation count of length
+        # s+uniqueseperator 5#Hello5#World encoding
+        #decoding scan nlen#str repeat till the end
+        res=''
+        for e in strs:
+            res+=str(len(e))+'#'+str(e)
+        return res
+
+
+        
+#271. Encode and Decode Strings
+    #note the i = j+length+1 not i += j+length+1
+    # key points of use number + # to encode and decode
+    def decode(self, s: str) -> List[str]:
+        """Decodes a single string to a list of strings.
+        """
+        # "2#C#1#&5#~Xp|F9#R4QBf9g=_"
+        #         i
+        #         j
+        print(s)
+        ans=[]
+        i=0
+        while i < len(s):
+            j=i
+            while s[j] != '#' : #scan to pound sign
+                j+=1
+            length= int(s[i:j])
+            ans.append(s[j+1:j+length+1])
+            i = j+length+1
+                
+        return ans
