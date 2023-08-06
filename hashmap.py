@@ -144,3 +144,19 @@ class Codec:
             i = j+length+1
                 
         return ans
+# 128. Longest Consecutive Sequence
+        # smart algo using set
+
+        numSet=se(nums)
+        longest=0
+        if len(nums)==0 : return 0
+
+        for k in nums:
+            if k-1 not in numSet:
+                # isHead
+                lens=1
+                while k + lens in numSet:
+                    lens+=1
+                    # print(kk, lens, longest)
+                longest=max(longest, lens)
+        return longest
