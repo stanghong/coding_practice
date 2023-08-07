@@ -44,3 +44,33 @@ class Solution:
             vol+=min(maxleft[i], maxright[i])-height[i]
         
         return vol
+
+# three sum
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        #three sum is two sum +two sum
+        # sorted, two pointers
+        # -1,0,1,2,-1,+4 1,2,3, 5
+        # N2 time
+        ans=[]
+        nums.sort()
+            
+        for i, e in enumerate(nums):
+            if e >0: break
+
+            if i> 0 and nums[i] ==nums[i-1]: # duplicates
+                continue
+
+            l,r=i+1, len(nums)-1
+            while l < r:
+                _sum=nums[l]+nums[r]+e
+                if _sum < 0:
+                    l+=1
+                elif _sum>0:
+                    r-=1
+                else:
+                    ans.append([nums[l], nums[r],e]) #find one answer
+                    l+=1    #keep moving on
+                    r-=1
+                    while nums[l]==nums[l-1] and l<r: #treat duplicates
+                        l+=1
