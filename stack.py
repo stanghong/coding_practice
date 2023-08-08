@@ -28,7 +28,8 @@ class Solution:
 
 class MinStack:
 
-
+#notice use minstack to save minval
+# val <=selfminstack[-1] logic 
     def __init__(self):
         self.stack=[]
         self.minstack=[]
