@@ -1,3 +1,31 @@
+# 739. Daily Temperatures
+class Solution:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        #brutal force [73,74,75,71,69,72,76,73]; scan n! times O N^2 time 
+                                # l   r
+        #scan once monotonic decreasing stack
+        if len(temperatures)==1: return [0]
+
+        stack=[]
+        for i, e in enumerate(temperatures):
+            # stack.append(e)
+            # while e> stack[-1]: pop and output[i]=i-stack[location] and i<len(nums)
+            # else: stack. append((i,e)
+            if not stack:
+                stack.append((i, e))
+            while stack and e > stack[-1][1]:
+                temperatures[stack[-1][0]] = i-stack[-1][0] # if increase i-stack[-1[0]]
+                stack.pop()
+            else:
+                stack.append((i, e))
+
+            if i==len(temperatures)-1: 
+                while stack:
+                    temperatures[stack[-1][0]]=0
+                    stack.pop()
+
+        return temperatures
+
 # 20. Valid Parentheses
 
 class Solution:
