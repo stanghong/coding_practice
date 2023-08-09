@@ -19,6 +19,7 @@ class Solution:
             else:
                 stack.append((i, e))
 
+            # following can be simplified as initialized res=[0]*len(temperature)
             if i==len(temperatures)-1: 
                 while stack:
                     temperatures[stack[-1][0]]=0
