@@ -1,3 +1,21 @@
+#853. Car Fleet
+
+class Solution:
+    def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
+        #monotinic decreasing stack
+        # calculate time to end 
+        #push to stack if increase popout till the end of list
+        # time to finish
+        fleet=[]
+        pair=[(pos, spd) for pos, spd in zip(position, speed)]
+        pair.sort(reverse=True) # ***order is very important, scan from right to left O(NlogN) time***
+        for pos, spd in pair:
+            tof=(target-pos)/spd
+            fleet.append(tof) #create stack
+            if len(fleet)>=2 and fleet[-1] <= fleet[-2]:
+                fleet.pop()
+        return len(fleet)
+
 # 739. Daily Temperatures
 class Solution:
     def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
