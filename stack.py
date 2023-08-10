@@ -1,3 +1,26 @@
+# 150. Evaluate Reverse Polish Notation
+
+if len(tokens)==1: return int(tokens[0])
+
+        stack=[]
+
+        for e in tokens:
+            if e not in ['+', '-', '*', '/']:
+                stack.append(e)
+            else:
+                last=int(stack.pop())
+                secLast=int(stack.pop())
+                if e == '+':
+                    stack.append(last+secLast)
+                elif e =='-':
+                    stack.append(secLast-last)
+                elif e== '*':
+                    stack.append(secLast*last)
+                elif e == '/' :
+                    stack.append(int(secLast/last))
+        
+        return stack[-1]
+
 #853. Car Fleet
 
 class Solution:
