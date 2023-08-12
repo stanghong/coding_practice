@@ -15,9 +15,9 @@ class Solution:
                     if lst[m] == target:
                         return True
                     elif lst[m] < target :
-                        l += 1
+                        l = m + 1
                     else:
-                        r -= 1
+                        r = m - 1
         
         return False
 
