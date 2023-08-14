@@ -77,3 +77,28 @@ class Solution:
 # The middle element is m = 5, which is 1. Here, the condition nums[l] < nums[m] doesn't hold (4 is not less than 1), so we update r = m to r = 5.
 # At this point, both l and r point to index 5, and you've effectively skipped the pivot element 0. This is why the condition nums[l] < nums[m] fails to handle the pivot element correctly and doesn't provide the desired result.
 
+# 33. Search in Rotated Sorted Array
+# steps, look left or right and search left or right; 
+# and hangle corner case [1]
+        l, r = 0, len(nums) -1
+
+
+        while l <= r:
+            m = (l+r)//2
+
+            if nums[m] == target: return m # find it
+
+            if nums[l] <= nums[m]: # =? left sorted
+                if (target < nums[l] or target > nums[m]) : #look left or right
+                    l = m + 1
+                else:
+                    r = m - 1
+            else: #right sorted 
+                if (target < nums[m] or target > nums[r]) : #look left or right
+                    r = m -1
+                else:
+                    l = m+ 1
+
+        return -1
+            
+
