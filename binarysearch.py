@@ -51,8 +51,6 @@ class Solution:
         return res
 
 # 153. Find Minimum in Rotated Sorted Array
-        # note nums[l] < nums[m] doesn't work  explaination below.
-        # otherwise, other conditions work
 
         l, r = 0, len(nums)-1
 
@@ -69,13 +67,16 @@ class Solution:
                 r = m -1
         return min(res, nums[l])
 
-# Let's walk through the scenario of [4,5,6,7,0,1,2] to see why nums[l] < nums[m] doesn't work as expected:
-
-# Initially, l = 0 and r = 6.
-# The middle element is m = 3, which is 7. The condition nums[l] < nums[m] holds (4 < 7), so we update l = m + 1 to l = 4.
-# Now, l = 4 and r = 6.
-# The middle element is m = 5, which is 1. Here, the condition nums[l] < nums[m] doesn't hold (4 is not less than 1), so we update r = m to r = 5.
-# At this point, both l and r point to index 5, and you've effectively skipped the pivot element 0. This is why the condition nums[l] < nums[m] fails to handle the pivot element correctly and doesn't provide the desired result.
+        # 1. note nums[l] < nums[m] doesn't work  explaination below.
+        # otherwise, other conditions work
+        # Let's walk through the scenario of [4,5,6,7,0,1,2] to see why nums[l] < nums[m] doesn't work as expected:
+        # Initially, l = 0 and r = 6.
+        # The middle element is m = 3, which is 7. The condition nums[l] < nums[m] holds (4 < 7), so we update l = m + 1 to l = 4.
+        # Now, l = 4 and r = 6.
+        # The middle element is m = 5, which is 1. Here, the condition nums[l] < nums[m] doesn't hold (4 is not less than 1), so we update r = m to r = 5.
+        # At this point, both l and r point to index 5, and you've effectively skipped the pivot element 0. This is why the condition nums[l] < nums[m] fails to handle the pivot element correctly and doesn't provide the desired result.
+        # key point 2:
+        # the rotated point alwasy have the minimum value since rotation point is defined as largest value jump to minimal value
 
 # 33. Search in Rotated Sorted Array
 # steps, look left or right and search left or right; 
