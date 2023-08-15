@@ -1,4 +1,4 @@
-class Solution:
+# searchMatrix class Solution:  [green]
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
         # binary search
         # search on row first and binary on the row
@@ -21,7 +21,7 @@ class Solution:
         
         return False
 
-# 875. Koko Eating Bananas
+# 875. Koko Eating Bananas  [yellow]
 class Solution:
     def minEatingSpeed(self, piles: List[int], h: int) -> int:
         #count pile[i]//k = hr hr<=8 for mini hr
@@ -50,7 +50,7 @@ class Solution:
 
         return res
 
-# 153. Find Minimum in Rotated Sorted Array
+# 153. Find Minimum in Rotated Sorted Array [green]
 
         l, r = 0, len(nums)-1
 
@@ -78,7 +78,7 @@ class Solution:
         # key point 2:
         # the rotated point alwasy have the minimum value since rotation point is defined as largest value jump to minimal value
 
-# 33. Search in Rotated Sorted Array
+# 33. Search in Rotated Sorted Array [red]
 # steps, look left or right and search left or right; 
 # and hangle corner case [1]
         l, r = 0, len(nums) -1
@@ -101,5 +101,30 @@ class Solution:
                     l = m+ 1
 
         return -1
+
+# 981. Time Based Key-Value Store [red]
+
+class TimeMap:
+
+    def __init__(self):
+        self.dic={} # {key: [val, timestamp]}
+
+    def set(self, key: str, value: str, timestamp: int) -> None:
+        if key not in self.dic:
+            self.dic[key]=[]
+        self.dic[key].append([value, timestamp])
+
+    def get(self, key: str, timestamp: int) -> str:
+        res= ""
+        values =self.dic.get(key, []) # return the values list of sublists
+        l, r = 0, len(values) -1
+        while l<=r:
+            m =(l+r) //2
+            if values[m][1] <= timestamp:
+                res =values[m][0]
+                l = m+1
+            else:
+                r = m -1
+        return res
             
 
