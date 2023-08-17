@@ -10,3 +10,23 @@
       r += 1
   return maxprofit
   # O(N) time and O(1) Space
+
+# 424. Longest Repeating Character Replacement
+    def characterReplacement(self, s: str, k: int) -> int:
+        #sliding window
+        l, r =0, 0
+        maxlen, maxFreq = 0, 0
+        map ={}
+        while r < len(s):
+            map[s[r]] = map.get(s[r], 0) + 1
+            maxFreq =max(maxFreq, map[s[r]])
+
+            if (r-l+1 - maxFreq) > k: # # stop condition
+                map[s[l]] -= 1
+                if not map[s[l]]: 
+                    map.pop(s[l])
+                l += 1
+            else:           
+                maxlen= max(maxlen, r-l+1)
+            r += 1
+        return maxlen
