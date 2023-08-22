@@ -48,3 +48,17 @@
             cur.next=list2
             
         return dummy.next
+# 141. Linked List Cycle
+
+def hascycle(head):
+        if not head or not head.next:
+            return False
+    
+        slow, fast = head, head.next
+        while fast and fast.next:
+            if slow == fast:
+                return True
+            slow = slow.next
+            fast = fast.next.next
+        
+        return False
