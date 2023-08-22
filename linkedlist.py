@@ -62,3 +62,28 @@ def hascycle(head):
             fast = fast.next.next
         
         return False
+
+# 2. Add Two Numbers
+
+def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+    
+    carry =0
+    _sum=ListNode(0) #learning create listnode
+    dummy=_sum
+
+    while l1 or l2 or carry:
+        l1val=l1.val if l1 else 0 
+        l2val=l2.val if l2 else 0              
+
+        val=l1val+l2val+carry #carry logic
+        carry=(val)//10
+        nodeVal=val%10
+
+        _sum.next =ListNode(nodeVal) #create next empty listnode
+
+        _sum=_sum.next
+        l1=l1.next if l1 else None
+
+        l2=l2.next if l2 else None
+
+    return dummy.next
