@@ -35,14 +35,14 @@
 
         while list1 and list2:
             if list1.val<=list2.val:
-                cur.next =ListNode(list1.val)
+                cur.next =ListNode(list1.val) #create additional list 
                 list1=list1.next
             else:
                 cur.next =ListNode(list2.val)
                 list2=list2.next
             cur=cur.next
         
-        if list1:
+        if list1: # attach tails if exist
             cur.next=list1
         if list2:
             cur.next=list2
@@ -55,7 +55,7 @@ def hascycle(head):
             return False
     
         slow, fast = head, head.next
-        while fast and fast.next:
+        while fast and fast.next: #note the stop condition !
             if slow == fast:
                 return True
             slow = slow.next
