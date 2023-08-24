@@ -87,3 +87,41 @@ def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optio
         l2=l2.next if l2 else None
 
     return dummy.next
+
+#143. Reorder List
+
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        """
+        Do not return anything, modify head in-place instead.
+        """
+        first=head
+        slow, fast=head, head.next
+        while fast and fast.next: #need this so slow.next 1, 2 x 3, 4
+            slow=slow.next
+            fast=fast.next.next
+        
+        second =slow.next
+        #how to cut the end of first
+
+        slow.next= None
+        pre=None
+        while second:
+            next=second.next
+            second.next=pre
+            pre=second
+            second =next
+        # pre is the head of the second
+
+        #merge
+        dummy=first
+        first, second=head, pre
+        while second:
+            temp1 = first.next
+            first.next=second
+            first=temp1
+
+            temp2 = second.next
+            second.next=first
+            second=temp2
+        
+        return dummy
