@@ -26,3 +26,16 @@ def maxDepth(self, root: Optional[TreeNode]) -> int:
         return max(ldep, rdep)+1
 
       return dfs(root)
+#bfs
+      maxdep=0
+      q=deque([root])
+      if not root: return 0
+      while q:
+        qsize=len(q)
+        for _ in range(qsize):
+          cur=q.popleft()
+          if cur.left: q.append(cur.left)
+          if cur.right:q.append(cur.right)
+        maxdep+=1
+      
+      return maxdep
