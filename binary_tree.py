@@ -1,4 +1,5 @@
-# reverse order
+# 226. Invert Binary Tree
+
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         if not root: return None
 
