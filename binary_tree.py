@@ -53,3 +53,23 @@ def maxDepth(self, root: Optional[TreeNode]) -> int:
             rightSame = helper(p.right, q.right)
 
             return leftSame and rightSame
+# 110. Balanced Binary Tree
+   def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        #note self.balanced and return max(leftDep, rightDep)+1
+        self.balanced=True
+
+        def helper(root):
+            if not root:
+                return 0
+           
+            leftDep=helper(root.left)
+            rightDep=helper(root.right)
+
+            if abs(leftDep-rightDep) >1:
+                self.balanced= False
+            
+            return max(leftDep, rightDep) +1 # bottom up?
+
+
+        helper(root)
+        return self.balanced
