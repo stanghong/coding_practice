@@ -39,3 +39,17 @@ def maxDepth(self, root: Optional[TreeNode]) -> int:
         maxdep+=1
       
       return maxdep
+# 100. Same Tree
+        def helper(p, q):
+            if not p and not q: 
+                return True
+            if not p or not q:
+                return False
+            if p.val !=q.val:
+                return False
+            
+
+            leftSame = helper(p.left, q.left)  #recursion returns the T/F from above logic
+            rightSame = helper(p.right, q.right)
+
+            return leftSame and rightSame
