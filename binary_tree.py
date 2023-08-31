@@ -73,3 +73,39 @@ def maxDepth(self, root: Optional[TreeNode]) -> int:
 
         helper(root)
         return self.balanced
+# 572. Subtree of Another Tree
+
+def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
+#leaf is isSubtree
+        self.subcur=subRoot
+        cur=root
+        def isSameTree(ltree, rtree):
+            if not ltree and not rtree:
+                return True
+            if not ltree or not rtree:
+                return False
+            if ltree.val != rtree.val: #note 
+                return False
+
+            left=isSameTree(ltree.left, rtree.left)
+            right=isSameTree(ltree.right, rtree.right)
+            return left and right
+
+
+        # Helper function to traverse main tree and check subtrees
+        def helper(cur):
+            if not cur :
+                return False
+            # Check current subtree against subRoot
+            if  isSameTree(cur, self.subcur): 
+                return True
+
+            # Check left and right children
+            left = helper(cur.left)
+            right = helper(cur.right)
+
+            return left or right #notice using or logic
+
+
+        return helper(root)
+
