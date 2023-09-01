@@ -129,3 +129,20 @@ def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
                 if cur.right: q.append(cur.right)
             res.append(temp)
         return res
+# 199. Binary Tree Right Side View
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        #BFS
+        res=[]
+        if not root: return []
+        q=deque([root])
+
+        while q:
+            qsize=len(q)
+            temp=[]
+            for _ in range(qsize):
+                cur=q.popleft()
+                temp.append(cur.val)
+                if cur.left: q.append(cur.left)
+                if cur.right: q.append(cur.right)
+            res.append(temp[-1])
+        return res
