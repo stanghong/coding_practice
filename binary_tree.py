@@ -109,3 +109,23 @@ def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bo
 
         return helper(root)
 
+#102. Binary Tree Level Order Traversal
+# BFS
+def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        #BFS
+        #popque
+        #pushque
+        res=[]
+        if not root: return []
+        q=deque([root])
+        while q:
+            temp=[]
+            qsize=len(q)
+
+            for _ in range(qsize):
+                cur=q.popleft()
+                temp.append(cur.val)
+                if cur.left: q.append(cur.left)
+                if cur.right: q.append(cur.right)
+            res.append(temp)
+        return res
