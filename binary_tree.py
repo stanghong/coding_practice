@@ -146,3 +146,22 @@ def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
                 if cur.right: q.append(cur.right)
             res.append(temp[-1])
         return res
+
+#good node 1448
+    def goodNodes(self, root: TreeNode) -> int:
+        
+        def dfs(root, maxnum):
+            if not root:
+                return 0
+            good=0
+            
+            if root.val>=maxnum:
+                good=1
+            maxnum=max(root.val,maxnum)
+            gleft=dfs(root.left, maxnum)
+            gright=dfs(root.right, maxnum)
+            return good+gleft+gright
+        
+        
+        return dfs(root, -inf)
+        #return 1 for  one node
