@@ -165,3 +165,20 @@ def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
         
         return dfs(root, -inf)
         #return 1 for  one node
+
+# 230. Kth Smallest Element in a BST
+def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        #dfs traverse and count steps
+        #O N and O 1
+        if not root: return None
+        lst=[]
+        def dfs(cur):
+            if not cur:
+                return 
+            dfs(cur.left)
+            lst.append(cur.val)
+            dfs(cur.right)
+            return lst
+        lst = dfs(root)
+        # print(lst)
+        return lst[k-1]
