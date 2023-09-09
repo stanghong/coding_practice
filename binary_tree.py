@@ -182,3 +182,21 @@ def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
         lst = dfs(root)
         # print(lst)
         return lst[k-1]
+
+
+# 105. Construct Binary Tree from Preorder and Inorder Traversal
+
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
+        #pre order  3 left, right
+        # in order  left 3 right
+
+        def helper(preorder, inorder):
+            if not preorder or not inorder:
+                return
+            root=TreeNode(preorder[0])
+            mid=inorder.index(preorder[0])
+            root.left=helper(preorder[1:mid+1],inorder[:mid])
+            root.right=helper(preorder[mid+1:], inorder[mid+1:])
+            return root
+        root=helper(preorder, inorder)
+        return root
