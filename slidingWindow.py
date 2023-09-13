@@ -30,3 +30,22 @@
                 maxlen= max(maxlen, r-l+1)
             r += 1
         return maxlen
+
+# 340. Longest Substring with At Most K Distinct Characters
+  l, r = 0, 0
+    maxlen = 0
+    char_count = defaultdict(int)
+    
+    while r < len(s):
+        char_count[s[r]] += 1
+        
+        while len(char_count) > k: 
+            char_count[s[l]] -= 1
+            if char_count[s[l]] == 0:
+                del char_count[s[l]]
+            l += 1
+        
+        maxlen = max(maxlen, r - l + 1)
+        r += 1
+        
+    return maxlen
