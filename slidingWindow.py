@@ -49,3 +49,19 @@
         r += 1
         
     return maxlen
+
+#159  Longest Substring with At Most Two Distinct Characters
+def lengthOfLongestSubstringTwoDistinct(self, s: str) -> int:
+        #sliding window, 
+        l, r =0, 0
+        map=defaultdict(int)
+        maxlen=0
+        for r in range(len(s)):
+            map[s[r]]+=1
+            while len(map)>2:
+                map[s[l]]-=1
+                if map[s[l]]==0:
+                    del map[s[l]]
+                l+=1
+            maxlen=max(maxlen,r-l+1)
+        return maxlen
