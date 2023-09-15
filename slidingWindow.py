@@ -65,3 +65,31 @@ def lengthOfLongestSubstringTwoDistinct(self, s: str) -> int:
                 l+=1
             maxlen=max(maxlen,r-l+1)
         return maxlen
+
+
+# Grokking: a list of starting indices of the anagrams of the pattern in the given string.
+from collections import defaultdict
+def find_string_anagrams(str1, pattern):
+  result_indexes = []
+  # TODO: Write your code here
+  l, r =0, 0
+  pat=defaultdict(int)
+  map=defaultdict(int)
+  # initialize pattern dict
+  for e in pattern:
+     pat[e]+=1
+  print(str1, pattern)
+  #sliding window
+  for r in range(len(str1)):
+    map[str1[r]]+=1
+    while len(map)>=len(pat): 
+      print(pat, map)
+      if pat == map:
+          result_indexes.append(l) 
+      map[str1[l]]-=1
+      if map[str1[l]] == 0:
+        del map[str1[l]]
+      l+=1
+
+      
+  return result_indexes
