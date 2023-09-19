@@ -200,3 +200,28 @@ def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
             return root
         root=helper(preorder, inorder)
         return root
+
+
+# 124. Binary Tree Maximum Path Sum
+import math
+class Solution:
+    def maxPathSum(self, root: Optional[TreeNode]) -> int:
+        # recursion 
+        # tree left max, right max and non root max
+        max_path= -math.inf
+
+        def gain_from_subtree(root):
+
+            nonlocal max_path
+
+            if not root: return 0  # tree traversal and max_sum
+            gain_from_left=gain_from_subtree(root.left)
+            gain_from_right=gain_from_subtree(root.right)
+            gain_from_left=max(gain_from_left, 0)
+            gain_from_right=max(gain_from_right, 0)
+
+            max_path=max(max_path, gain_from_left +root.val+gain_from_right) #global max_path
+            return max(gain_from_left +root.val, gain_from_right +root.val)
+        
+        max_sum=gain_from_subtree(root)
+        return max(max_sum, max_path)
