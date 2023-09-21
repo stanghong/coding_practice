@@ -74,3 +74,18 @@ class Solution:
                     r-=1
                     while nums[l]==nums[l-1] and l<r: #treat duplicates
                         l+=1
+
+# remove duplicates from a list Grokking pattern
+def remove_duplicates(arr):
+  # TODO: Write your code here
+  # two pointer
+  # [2, 3, 3, 3, 6, 9, 9]
+  #              l
+  #                    r
+  l, r =0, 1
+  while r <len(arr):
+    if arr[r] != arr[l]:
+      l+=1
+      arr[l] =arr[r]
+    r+=1
+return l+1
