@@ -89,3 +89,24 @@ def remove_duplicates(arr):
       arr[l] =arr[r]
     r+=1
 return l+1
+
+#triplet_sum_close_to_target
+def triplet_sum_close_to_target(arr, target_sum):
+  arr.sort()
+  closetSum =float('inf') # note inf usage
+  small_diff=float('inf')
+  for i in range(len(arr)-2): #note i
+    l, r = i+1, len(arr) -1
+    while l < r:
+      _sum=arr[l]+arr[r]+arr[i]
+      diff=abs(_sum-target_sum)
+      if diff<small_diff:
+        small_diff=min(diff, closeSum)
+        closetSum=_sum
+
+      if _sum < target_sum:
+        l+=1
+      else:
+        r-=1
+
+  return closetSum
