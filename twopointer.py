@@ -110,3 +110,20 @@ def triplet_sum_close_to_target(arr, target_sum):
         r-=1
 
   return closetSum
+
+# triplet_with_smaller_sum
+def triplet_with_smaller_sum(arr, target):
+  count = 0
+  # TODO: Write your code here
+  # two pointers with a sorted arr
+  arr.sort()
+  for i in range(len(arr)-2):
+    l, r =i+1, len(arr)-1
+    while l <r :
+      _sum= arr[l]+arr[r]+ arr[i]
+      if _sum < target:
+        count+= r-l # ntoe the return includes all r-l before move l+=1
+        l+=1
+      else:
+        r-=1
+  return count
