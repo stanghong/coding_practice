@@ -13,6 +13,26 @@ class Solution:
                 res[-1][1]=max(res[-1][1], interval[0], interval[1])
 
         return res
+# Another trial
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        #sort by 1
+        #compare the second if left[1]>right[0] and left[1]=maxleft[1], right[2]) and append(new interval)
+        res=[]
+        intervals.sort(key=lambda x: x[0])
+        cur=intervals[0]
+        for i in range(1, len(intervals)):
+            next=intervals[i]  #stuck/ learn on the cur and next variables
+            if cur[1]>=next[0]:
+                cur[1]=max(cur[1], next[1]) 
+            else: # no overlap
+                res.append(cur)
+                cur=next
+        res.append(cur)  
+
+        return res
+
+
 
 # 57. Insert Interval
 class Solution:
