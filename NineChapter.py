@@ -33,3 +33,22 @@ class Solution:
         val = min(val, 2**31 - 1)
 
         return val
+#longestr parlindrom (easy)
+class Solution:
+    def longestPalindrome(self, s: str) -> int:
+        # create hashmap
+        # even number +1 odd number is the maxlen
+        hashmap=defaultdict(int)
+        for e in s:
+            hashmap[e]+=1
+        evenCount=0
+        oddCount=0
+        for v in hashmap.values():
+            if v%2 == 0:
+                evenCount+=v
+            else: # 'ccccc' can only use 4 cs
+                evenCount+=v-1
+                oddCount=1
+        
+        maxlen=oddCount+evenCount
+        return maxlen
